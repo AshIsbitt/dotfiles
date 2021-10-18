@@ -1,1 +1,3 @@
 cp ~/.nanorc ~/Desktop/dotfiles/.nanorc
+cp ~/.zshrc ~/Desktop/dotfiles/zshrc
+cp ~/.config/nvim/init.vim ~/Desktop/dotfiles/init.vim
