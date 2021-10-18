@@ -1,0 +1,15 @@
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+set hlsearch
+set ignorecase
+set smartcase
+set linebreak
+syntax enable
+set laststatus=2
+set wildmenu
+set number
+set mouse=a
+set shell=zsh
+set spell
