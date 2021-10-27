@@ -16,7 +16,7 @@ set completeopt=menu,menuone,noselect
 " Plugins via vimPlug
 " https://github.com/junegunn/vim-plug
 call plug#begin('~/.config/nvim/plugins')
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate :TSInstall python'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
