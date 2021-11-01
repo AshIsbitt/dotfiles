@@ -32,18 +32,19 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git 
+plugins=(tmux
+	git 
 	zsh-autosuggestions 
 	zsh-syntax-highlighting
 	zsh-completions
-	tmux)
+	)
 
+
+ZSH_TMUX_AUTOSTART=true
 source $ZSH/oh-my-zsh.sh
 
-ZSH_TMUX_AUTOSTART_ONCE=true
-ZSH_TMUX_UNICODE=true
-
 # export MANPATH="/usr/local/man:$MANPATH"
+
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
