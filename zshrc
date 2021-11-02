@@ -40,7 +40,7 @@ plugins=(tmux
 	)
 
 
-ZSH_TMUX_AUTOSTART=true
+# ZSH_TMUX_AUTOSTART=true
 source $ZSH/oh-my-zsh.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
