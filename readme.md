@@ -41,12 +41,13 @@ sudo apt-get install dconf-cli uuid-runtime
 ```
 In the runtime, enter theme `6`
 
-This is based off of the installation from [this rep](https://github.com/Mayccoll/Gogh)
+This is based off of the installation from [this repo](https://github.com/Mayccoll/Gogh)
 
 #### Add the nerd font:
 ```
 git clone git@github.com:ryanoasis/nerd-fonts.git
 cd nerd-fonts/patched-fonts/droid-sans-mono/complete
+cp <font files> /Library/Fonts/<font files>
 ```
 
 I also prefer to use the PowerLevel10k theme in ZSH, which can be set up to my preferences like so:
