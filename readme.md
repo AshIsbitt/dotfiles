@@ -30,7 +30,7 @@ And set up the required symlinks so that the various tools can use files from th
 ```
 
 ### Theme and font installation
-I use the `chalk` colour scheme and `` nerd font (a font set up for more complex symbols). 
+I use the `chalk` colour scheme and `Droid Sans Mono` nerd font (a font set up for more complex symbols). 
 
 #### Install chalk:
 If you are on MacOS, simply double click the attached `chalk.terminal` file and the terminal will launch. Open terminal > preferences > chalk > set to default (on the bottom of the theme window)
@@ -43,7 +43,11 @@ In the runtime, enter theme `6`
 
 This is based off of the installation from [this rep](https://github.com/Mayccoll/Gogh)
 
-Add the nerd font:
+#### Add the nerd font:
+```
+git clone git@github.com:ryanoasis/nerd-fonts.git
+cd nerd-fonts/patched-fonts/droid-sans-mono/complete
+```
 
 I also prefer to use the PowerLevel10k theme in ZSH, which can be set up to my preferences like so:
 
