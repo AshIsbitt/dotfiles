@@ -50,6 +50,3 @@ cd nerd-fonts/patched-fonts/droid-sans-mono/complete
 cp <font files> /Library/Fonts/<font files>
 ```
 
-I also prefer to use the PowerLevel10k theme in ZSH, which can be set up to my preferences like so:
-
-
