@@ -79,7 +79,6 @@ lua <<EOF
     },
   },
 
-
   experimental = {
     -- I like the new menu better! Nice work hrsh7th
     native_menu = false,
