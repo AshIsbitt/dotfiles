@@ -29,6 +29,7 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'onsails/lspkind-nvim'
 call plug#end()
 
 colorscheme afterglow
@@ -37,75 +38,76 @@ lua require('gitsigns').setup()
 
 lua <<EOF
   -- Setup nvim-cmp.
-  local cmp = require'cmp'
+	local cmp = require'cmp'
+	local lspkind = require "lspkind"
+	lspkind.init()
 
-  cmp.setup({
-    snippet = {
-      -- REQUIRED - you must specify a snippet engine
-      expand = function(args)
-        require('luasnip').lsp_expand(args.body)
-      end,
-    },
-    mapping = {
-      ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-      ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-      ['<C-e>'] = cmp.mapping({
-        i = cmp.mapping.abort(),
-        c = cmp.mapping.close(),
-      }),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    },
+	cmp.setup({
+		snippet = {
+			expand = function(args)
+				require('luasnip').lsp_expand(args.body)
+			end,
+		},
+
+		mapping = {
+			['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+			['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+			['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+			['<C-y>'] = cmp.config.disable, 
+			['<C-e>'] = cmp.mapping({
+				i = cmp.mapping.abort(),
+				c = cmp.mapping.close(),
+			}),
+			['<CR>'] = cmp.mapping.confirm({ select = true }),
+		},
+
 	-- Stolen from TJ
 	-- https://github.com/tjdevries/config_manager/blob/c91305b584a866a52ae09e8d34fb6056081e3936/xdg_config/nvim/after/plugin/completion.lua#L144
-  formatting = {
-    -- Youtube: How to set up nice formatting for your sources.
-    format = lspkind.cmp_format {
-      with_text = true,
-      menu = {
-        buffer = "[buf]",
-        nvim_lsp = "[LSP]",
-        luasnip = "[snip]",
-      },
-    },
-  },
-  experimental = {
-    -- I like the new menu better! Nice work hrsh7th
-    native_menu = false,
+		formatting = {
+			format = lspkind.cmp_format {
+				with_text = true,
+				menu = {
+					buffer = "[buf]",
+					nvim_lsp = "[LSP]",
+					luasnip = "[snip]",
+					},
+				},
+			},
 
-    -- Let's play with this for a day or two
-    ghost_text = not is_wsl,
-  },
-  sources = cmp.config.sources({
-      { name = 'nvim_lsp' },
-      { name = 'luasnip' },
-    }, {
-      { name = 'buffer', keyword_length = 4},
-    })
-  })
+		experimental = {
+			native_menu = false,
+			ghost_text = not is_wsl,
+		},
+
+		sources = cmp.config.sources({
+			{ name = 'nvim_lsp' },
+			{ name = 'luasnip' },
+			}, {
+			{ name = 'buffer', keyword_length = 4},
+		})
+	})
 
   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline('/', {
-    sources = {
-      { name = 'buffer' }
-    }
-  })
+	cmp.setup.cmdline('/', {
+		sources = {
+			{ name = 'buffer' }
+			}
+		})
 
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline(':', {
     sources = cmp.config.sources({
-      { name = 'path' }
+		{ name = 'path' }
     }, {
-      { name = 'cmdline' }
-    })
-  })
+		{ name = 'cmdline' }
+		})
+	})
 
   -- Setup lspconfig.
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
   require('lspconfig')['pylsp'].setup {
-    capabilities = capabilities
+	capabilities = capabilities
   }
 EOF
 
