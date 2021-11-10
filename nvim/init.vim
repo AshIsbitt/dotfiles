@@ -17,7 +17,7 @@ set completeopt=menu,menuone,noselect
 " Plugins via vimPlug
 " https://github.com/junegunn/vim-plug
 call plug#begin('~/.config/nvim/plugins')
-Plug 'morhetz/gruvbox'
+Plug 'danilo-augusto/vim-afterglow'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
@@ -31,7 +31,7 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 call plug#end()
 
-colorscheme gruvbox
+colorscheme afterglow
 
 lua require('gitsigns').setup()
 
@@ -57,14 +57,6 @@ lua <<EOF
       }),
       ['<CR>'] = cmp.mapping.confirm({ select = true }),
     },
-    sources = cmp.config.sources({
-      { name = 'nvim_lsp' },
-      { name = 'luasnip' },
-    }, {
-      { name = 'buffer', keyword_length = 4},
-    })
-  }),
-
 	-- Stolen from TJ
 	-- https://github.com/tjdevries/config_manager/blob/c91305b584a866a52ae09e8d34fb6056081e3936/xdg_config/nvim/after/plugin/completion.lua#L144
   formatting = {
@@ -78,7 +70,6 @@ lua <<EOF
       },
     },
   },
-
   experimental = {
     -- I like the new menu better! Nice work hrsh7th
     native_menu = false,
@@ -86,6 +77,13 @@ lua <<EOF
     -- Let's play with this for a day or two
     ghost_text = not is_wsl,
   },
+  sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'luasnip' },
+    }, {
+      { name = 'buffer', keyword_length = 4},
+    })
+  })
 
   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline('/', {
