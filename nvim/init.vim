@@ -13,7 +13,6 @@ set signcolumn=yes
 
 set completeopt=menu,menuone,noselect
 
-
 " Plugins via vimPlug
 " https://github.com/junegunn/vim-plug
 call plug#begin('~/.config/nvim/plugins')
@@ -30,6 +29,7 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'onsails/lspkind-nvim'
+Plug 'lukas-reineke/indent-blankline.nvim'
 call plug#end()
 
 colorscheme afterglow
@@ -109,5 +109,6 @@ lua <<EOF
   require('lspconfig')['pylsp'].setup {
 	capabilities = capabilities
   }
+
 EOF
 
