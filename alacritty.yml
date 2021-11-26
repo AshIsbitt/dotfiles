@@ -1,0 +1,15 @@
+font:
+  normal:
+    family: DroidSansMono Nerd Font Mono
+
+  size: 11.5
+  use_thin_strokes: true
+
+window:
+  startup_mode: Maximized 
+
+scrolling:
+  auto_scroll: true
+
+tabspaces: 4
+
