@@ -31,9 +31,10 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'onsails/lspkind-nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'tanvirtin/monokai.nvim'
 call plug#end()
 
-colorscheme afterglow
+colorscheme monokai_pro 
 
 lua require('gitsigns').setup()
 
