@@ -6,10 +6,10 @@ set smartindent
 set guicursor=
 set nu
 set nohlsearch
-set colorcolumn=81
+set colorcolumn=80
 hi colorcolumn ctermbg=lightgrey guibg=lightgrey
 set nowrap
-set scrolloff=4
+set scrolloff=5
 set signcolumn=yes
 
 set completeopt=menu,menuone,noselect
