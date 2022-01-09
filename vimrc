@@ -1,5 +1,6 @@
 set encoding=utf-8
 set nocompatible
+set noshowmode
 
 set expandtab
 set tabstop=4
@@ -27,9 +28,9 @@ set wildmode=longest,list
 " Statusline
 set laststatus=2
 set statusline=
-set statusline+=%2*                 
-set statusline+=%{StatuslineMode()} "Show vim mode
-set statusline=<<%F>>               "filename
+set statusline+=\ %{StatuslineMode()} "Show vim mode
+set statusline+=\ \|                "pipe divide
+set statusline+=\ <<%F>>            "filename
 set statusline+=\ %m                "modified flag 
 set statusline+=\ %r                "readonly flag
 set statusline+=%=                  "Switch to right side
@@ -52,20 +53,28 @@ inoremap < <><Left>
 function! StatuslineMode()
   let l:mode=mode()
   if l:mode==#"n"
+    hi statusline ctermfg=blue
     return "NORMAL"
   elseif l:mode==?"v"
+    hi statusline ctermfg=red
     return "VISUAL"
   elseif l:mode==#"i"
+    hi statusline ctermfg=green
     return "INSERT"
   elseif l:mode==#"R"
+    hi statusline ctermfg=blue
     return "REPLACE"
   elseif l:mode==?"s"
+    hi statusline ctermfg=blue
     return "SELECT"
   elseif l:mode==#"t"
+    hi statusline ctermfg=blue
     return "TERMINAL"
   elseif l:mode==#"c"
+    hi statusline ctermfg=blue
     return "COMMAND"
   elseif l:mode==#"!"
+    hi statusline ctermfg=blue
     return "SHELL"
   endif
 endfunction
