@@ -23,17 +23,22 @@ set ruler
 set wildmenu
 set wildmode=longest,list
 
+
 " Statusline
 set laststatus=2
-set statusline=<<%F>>       "filename
-set statusline+=\ %m        "modified flag 
-set statusline+=\ %r        "readonly flag
-set statusline+=%=          "Switch to right side
-set statusline+=\ %c        "column number 
-set statusline+=\ \|        "pipe divide 
-set statusline+=\ %l/%L     "line number/total
-set statusline+=\ (%p%%)    "Percentage
-"hi statusline ctermbg=black ctermfg=yellow
+set statusline=
+set statusline+=%2*                 
+set statusline+=%{StatuslineMode()} "Show vim mode
+set statusline=<<%F>>               "filename
+set statusline+=\ %m                "modified flag 
+set statusline+=\ %r                "readonly flag
+set statusline+=%=                  "Switch to right side
+set statusline+=%{b:gitbranch}      " Display current branch
+set statusline+=\ \|                "pipe divide
+set statusline+=\ %c                "column number 
+set statusline+=\ \|                "pipe divide
+set statusline+=\ %l/%L             "line number/total
+set statusline+=\ (%p%%)            "Percentage
 
 command! W w "This lets you use capital w to save
 command! Q q "Capital q now quits too
@@ -44,21 +49,45 @@ inoremap [ []<Left>
 inoremap { {}<Left>
 inoremap < <><Left>
 
-" Change statusline color based off mode
-" https://vim.fandom.com/wiki/Change_statusline_color_to_show_insert_or_normal_mode
-function! InsertStatuslineColor(mode)
-  if a:mode == 'i'
-    hi statusline ctermfg=green
-  elseif a:mode =="v" or a:mode == "V"
-    hi statusline ctermfg=magenta
-  else
-    hi statusline ctermfg=red
+function! StatuslineMode()
+  let l:mode=mode()
+  if l:mode==#"n"
+    return "NORMAL"
+  elseif l:mode==?"v"
+    return "VISUAL"
+  elseif l:mode==#"i"
+    return "INSERT"
+  elseif l:mode==#"R"
+    return "REPLACE"
+  elseif l:mode==?"s"
+    return "SELECT"
+  elseif l:mode==#"t"
+    return "TERMINAL"
+  elseif l:mode==#"c"
+    return "COMMAND"
+  elseif l:mode==#"!"
+    return "SHELL"
   endif
 endfunction
 
-au InsertEnter * call InsertStatuslineColor(v:insertmode)
-au InsertChange * call InsertStatuslineColor(visualmode())
-au InsertLeave * hi statusline ctermfg=blue
-
 " default the statusline to green when entering Vim
 hi statusline ctermfg=blue
+
+function! StatuslineGitBranch()
+  let b:gitbranch=""
+  if &modifiable
+    try
+      let l:dir=expand('%:p:h')
+      let l:gitrevparse = system("git -C ".l:dir." rev-parse --abbrev-ref HEAD")
+      if !v:shell_error
+        let b:gitbranch="(".substitute(l:gitrevparse, '\n', '', 'g').") "
+      endif
+    catch
+    endtry
+  endif
+endfunction
+
+augroup GetGitBranch
+  autocmd!
+  autocmd VimEnter,WinEnter,BufEnter * call StatuslineGitBranch()
+augroup END
