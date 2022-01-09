@@ -30,12 +30,12 @@ set laststatus=2
 set statusline=
 set statusline+=\ %{StatuslineMode()} "Show vim mode
 set statusline+=\ \|                "pipe divide
-set statusline+=\ <<%F>>            "filename
+set statusline+=\ <<%f>>            "filename
 set statusline+=\ %m                "modified flag 
 set statusline+=\ %r                "readonly flag
 set statusline+=%=                  "Switch to right side
 set statusline+=%{b:gitbranch}      " Display current branch
-set statusline+=\ \|                "pipe divide
+set statusline+=\|                "pipe divide
 set statusline+=\ %c                "column number 
 set statusline+=\ \|                "pipe divide
 set statusline+=\ %l/%L             "line number/total
