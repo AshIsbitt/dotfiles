@@ -50,6 +50,9 @@ inoremap [ []<Left>
 inoremap { {}<Left>
 inoremap < <><Left>
 
+"delete an entire word, no matter where I am in it
+nnoremap dw diw 
+
 function! StatuslineMode()
   let l:mode=mode()
   if l:mode==#"n"
