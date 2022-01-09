@@ -2,7 +2,7 @@ set encoding=utf-8
 set nocompatible
 
 set expandtab
-ret tabstop=4
+set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set smartindent
