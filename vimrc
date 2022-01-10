@@ -12,7 +12,7 @@ set scrolloff=5
 set nowrap
 
 syntax enable
-color elflord
+color delek
 
 set number
 set colorcolumn=80,88
@@ -54,40 +54,37 @@ inoremap [ []<Left>
 inoremap { {}<Left>
 inoremap < <><Left>
 
-"delete an entire word, no matter where I am in it
-nnoremap dw diw 
-
 function! StatuslineMode()
   let l:mode=mode()
   if l:mode==#"n"
-    hi statusline ctermfg=blue
+    hi statusline ctermbg=blue
     return "NORMAL"
   elseif l:mode==?"v"
-    hi statusline ctermfg=red
+    hi statusline ctermbg=red
     return "VISUAL"
   elseif l:mode==#"i"
-    hi statusline ctermfg=green
+    hi statusline ctermbg=green
     return "INSERT"
   elseif l:mode==#"R"
-    hi statusline ctermfg=blue
+    hi statusline ctermbg=blue
     return "REPLACE"
   elseif l:mode==?"s"
-    hi statusline ctermfg=blue
+    hi statusline ctermbg=blue
     return "SELECT"
   elseif l:mode==#"t"
-    hi statusline ctermfg=blue
+    hi statusline ctermbg=blue
     return "TERMINAL"
   elseif l:mode==#"c"
-    hi statusline ctermfg=blue
+    hi statusline ctermbg=blue
     return "COMMAND"
   elseif l:mode==#"!"
-    hi statusline ctermfg=blue
+    hi statusline ctermbg=blue
     return "SHELL"
   endif
 endfunction
 
 " default the statusline to green when entering Vim
-hi statusline ctermfg=blue
+hi statusline ctermbg=blue ctermfg=black
 
 function! StatuslineGitBranch()
   let b:gitbranch=""
