@@ -15,9 +15,9 @@ syntax enable
 color elflord
 
 set number
-set colorcolumn=80
+set colorcolumn=80,88
 set signcolumn=yes
-hi ColorColumn guibg=grey ctermbg=grey
+hi ColorColumn guibg=darkgrey ctermbg=darkgrey
 set ruler
 
 " autocomplete menu
