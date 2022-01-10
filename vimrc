@@ -24,6 +24,10 @@ set ruler
 set wildmenu
 set wildmode=longest,list
 
+" Set tab title to filename
+let &titlestring=@%
+set title
+
 
 " Statusline
 set laststatus=2
