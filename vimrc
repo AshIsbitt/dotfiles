@@ -2,10 +2,10 @@ set encoding=utf-8
 set nocompatible
 set noshowmode
 
-set expandtab
 set tabstop=4
-set softtabstop=4
 set shiftwidth=4
+set expandtab
+set softtabstop=4
 set smartindent
 set smarttab
 set scrolloff=5
@@ -27,8 +27,8 @@ autocmd FileType text :set colorcolumn=
 autocmd FileType markdown :set colorcolumn=
 
 " indentation guides
-set listchars=tab:\|\ 
-set list
+" set listchars=lead:\|
+"set list
 
 " autocomplete menu
 set wildmenu
