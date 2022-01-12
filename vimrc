@@ -15,10 +15,13 @@ syntax enable
 color delek
 
 set number
-set colorcolumn=80,88
 set signcolumn=yes
-hi ColorColumn guibg=darkgrey ctermbg=darkgrey
 set ruler
+set colorcolumn=80,88
+hi ColorColumn guibg=darkgrey ctermbg=darkgrey
+
+autocmd FileType text :set colorcolumn= 
+autocmd FileType markdown :set colorcolumn=
 
 " autocomplete menu
 set wildmenu
@@ -27,6 +30,8 @@ set wildmode=longest,list
 " Set tab title to filename
 let &titlestring=@%
 set title
+
+set backspace=indent,eol,start
 
 
 " Statusline
