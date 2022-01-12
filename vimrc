@@ -17,11 +17,18 @@ color delek
 set number
 set signcolumn=yes
 set ruler
+set cursorline
+hi cursorline cterm=NONE ctermbg=235 ctermfg=NONE
 set colorcolumn=80,88
 hi ColorColumn guibg=darkgrey ctermbg=darkgrey
 
+" disable colorcolumn on .txt and .md files
 autocmd FileType text :set colorcolumn= 
 autocmd FileType markdown :set colorcolumn=
+
+" indentation guides
+set listchars=tab:\|\ 
+set list
 
 " autocomplete menu
 set wildmenu
