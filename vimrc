@@ -12,23 +12,24 @@ set scrolloff=5
 set nowrap
 
 syntax enable
-color delek
+"color delek
 
 set number
 set signcolumn=yes
 set ruler
 set cursorline
-hi cursorline cterm=NONE ctermbg=235 ctermfg=NONE
+hi cursorline cterm=none ctermbg=235
+set cursorlineopt=both
 set colorcolumn=80,88
-hi ColorColumn guibg=darkgrey ctermbg=darkgrey
+highlight ColorColumn guibg=grey20 ctermbg=darkgrey
 
 " disable colorcolumn on .txt and .md files
 autocmd FileType text :set colorcolumn= 
 autocmd FileType markdown :set colorcolumn=
 
 " indentation guides
-" set listchars=lead:\|
-"set list
+set list
+set listchars=multispace:\|\ \ \   
 
 " autocomplete menu
 set wildmenu
@@ -39,7 +40,6 @@ let &titlestring=@%
 set title
 
 set backspace=indent,eol,start
-
 
 " Statusline
 set laststatus=2
@@ -57,6 +57,9 @@ set statusline+=\ \|                "pipe divide
 set statusline+=\ %l/%L             "line number/total
 set statusline+=\ (%p%%)            "Percentage
 
+autocmd ModeChanged *:[vV\x16]*] : hl statusline ctermbg=orange 
+autocmd ModeChanged *:I :hl statusline ctermbg=green 
+
 command! W w "This lets you use capital w to save
 command! Q q "Capital q now quits too
 
@@ -69,13 +72,10 @@ inoremap < <><Left>
 function! StatuslineMode()
   let l:mode=mode()
   if l:mode==#"n"
-    hi statusline ctermbg=blue
     return "NORMAL"
   elseif l:mode==?"v"
-    hi statusline ctermbg=red
     return "VISUAL"
   elseif l:mode==#"i"
-    hi statusline ctermbg=green
     return "INSERT"
   elseif l:mode==#"R"
     hi statusline ctermbg=blue
