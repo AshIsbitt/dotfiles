@@ -57,11 +57,12 @@ set statusline+=\ \|                "pipe divide
 set statusline+=\ %l/%L             "line number/total
 set statusline+=\ (%p%%)            "Percentage
 
-autocmd ModeChanged *:[vV\x16]*] : hl statusline ctermbg=orange 
+autocmd ModeChanged *:[vV\x16]*] :hl statusline ctermbg=orange 
 autocmd ModeChanged *:I :hl statusline ctermbg=green 
 
 command! W w "This lets you use capital w to save
 command! Q q "Capital q now quits too
+command! Wq wq
 
 " Automatically close brackets
 inoremap ( ()<Left>
