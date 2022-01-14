@@ -57,8 +57,11 @@ set statusline+=\ \|                "pipe divide
 set statusline+=\ %l/%L             "line number/total
 set statusline+=\ (%p%%)            "Percentage
 
-autocmd ModeChanged *:[vV\x16]*] :hl statusline ctermbg=orange 
-autocmd ModeChanged *:I :hl statusline ctermbg=green 
+hi statusline cterm=bold,reverse ctermfg=0 ctermbg=12
+autocmd ModeChanged *:N :hi statusline cterm=bold,reverse ctermbg=12 "Normal mode 
+autocmd ModeChanged *:[vV\x16]*] :hi statusline cterm=bold,reverse ctermbg=magenta "Visual mode 
+autocmd ModeChanged *:I :hi statusline cterm=bold,reverse ctermbg=10 " Insert mode 
+autocmd ModeChanged *:C :hi statusline cterm=bold ctermbg=darkred " Command mode
 
 command! W w "This lets you use capital w to save
 command! Q q "Capital q now quits too
@@ -79,25 +82,20 @@ function! StatuslineMode()
   elseif l:mode==#"i"
     return "INSERT"
   elseif l:mode==#"R"
-    hi statusline ctermbg=blue
     return "REPLACE"
   elseif l:mode==?"s"
-    hi statusline ctermbg=blue
     return "SELECT"
   elseif l:mode==#"t"
-    hi statusline ctermbg=blue
     return "TERMINAL"
   elseif l:mode==#"c"
-    hi statusline ctermbg=blue
     return "COMMAND"
   elseif l:mode==#"!"
-    hi statusline ctermbg=blue
     return "SHELL"
   endif
 endfunction
 
 " default the statusline to green when entering Vim
-hi statusline ctermbg=blue ctermfg=black
+"hi statusline ctermbg=blue ctermfg=black
 
 function! StatuslineGitBranch()
   let b:gitbranch=""
