@@ -59,9 +59,10 @@ set statusline+=\ (%p%%)            "Percentage
 
 hi statusline cterm=bold,reverse ctermfg=0 ctermbg=12
 autocmd ModeChanged *:N :hi statusline cterm=bold,reverse ctermbg=12 "Normal mode 
-autocmd ModeChanged *:[vV\x16]*] :hi statusline cterm=bold,reverse ctermbg=magenta "Visual mode 
 autocmd ModeChanged *:I :hi statusline cterm=bold,reverse ctermbg=10 " Insert mode 
-autocmd ModeChanged *:C :hi statusline cterm=bold ctermbg=darkred " Command mode
+autocmd ModeChanged *:[vV\x16]* :hi statusline cterm=bold,reverse ctermbg=6 "Visual mode 
+
+autocmd ModeChanged *:C* :hi statusline cterm=bold,reverse ctermbg=1 "Command mode
 
 command! W w "This lets you use capital w to save
 command! Q q "Capital q now quits too
