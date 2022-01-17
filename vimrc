@@ -70,10 +70,10 @@ command! Q q "Capital q now quits too
 command! Wq wq
 
 " Automatically close brackets
-inoremap ( ()<Left>
-inoremap [ []<Left>
-inoremap { {}<Left>
-inoremap < <><Left>
+"inoremap ( ()<Left>
+"inoremap [ []<Left>
+"inoremap { {}<Left>
+"inoremap < <><Left>
 
 function! StatuslineMode()
   let l:mode=mode()
