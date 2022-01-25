@@ -34,7 +34,7 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'tanvirtin/monokai.nvim'
 call plug#end()
 
-colorscheme monokai_pro 
+"colorscheme monokai_pro 
 
 lua require('gitsigns').setup()
 

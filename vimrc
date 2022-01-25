@@ -32,6 +32,10 @@ autocmd FileType markdown :set colorcolumn=
 set list
 set listchars=multispace:\|\ \ \   
 
+autocmd FileType vim :set listchars=
+autocmd FileType text :set listchars=
+autocmd FileType markdown :set listchars=
+
 " autocomplete menu
 set wildmenu
 set wildmode=longest,list
@@ -51,8 +55,8 @@ set statusline+=\ <<%f>>            "filename
 set statusline+=\ %m                "modified flag 
 set statusline+=\ %r                "readonly flag
 set statusline+=%=                  "Switch to right side
-set statusline+=%y                  " filetype
-set statusline+=\|                "pipe divide
+set statusline+=%y\                   " filetype
+set statusline+=\|\                 "pipe divide
 set statusline+=%{b:gitbranch}      " Display current branch
 set statusline+=\|                "pipe divide
 set statusline+=\ %c                "column number 
