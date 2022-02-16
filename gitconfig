@@ -1,6 +1,6 @@
 # This is Git's per-user configuration file.
 [user]
-	name = Ttibsi
-	email = ashisbitt@icloud.com
+name = Ttibsi
+email = ashisbitt@icloud.com
 [alias]
-	pom = push origin master
+pom = push origin master
