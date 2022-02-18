@@ -16,7 +16,6 @@ syntax enable
 "color delek
 
 set number
-set signcolumn=yes
 set ruler
 set cursorline
 hi cursorline cterm=none ctermbg=235
