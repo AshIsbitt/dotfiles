@@ -1,9 +1,0 @@
-set tabsize 4
-set guidestripe 100
-set autoindent
-set trimblanks
-set linenumbers
-set constantshow
-set keycolor brightgreen
-set functioncolor brightgreen
-include /usr/local/share/nano/*.nanorc
