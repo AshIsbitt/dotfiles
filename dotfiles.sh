@@ -8,22 +8,33 @@ sudo apt update && sudo apt upgrade -y
 
 # Remove old installs/files
 echo -e "-----REMOVE UNNEEDED FILES-----"
+rm -rf $HOME/.go
+# remove fonts
 
 # gnome settings
 echo -e "-----GNOME SETTINGS-----"
 gsettings set org.gnome.desktop.interface show-battery-percentage true
 
+# File structure setup
+echo -e "-----SET UP FILE STRUCTURE-----"
+rm -rf $(HOME)/Desktop \
+    $(HOME)/Documents \
+    $(HOME)/Music \
+    $(HOME)/Pictures \
+    $(HOME)/Public \
+    $(HOME)/Templates \
+    $(HOME)/Videos \
+
+mkdir $(HOME)/Workspace
 
 # apt install everything
 echo -e "-----APT INSTALL-----"
 
-# manual install - neovim
-
-# File structure setup
-echo -e "-----SET UP FILE STRUCTURE-----"
+# manual install - neovim, fonts, go
 
 # set up symlinks
 echo -e "-----SET UP CONFIG SYMLINKS-----"
+git clone git@github.com:Ttibsi/dotfiles.git $(HOME)/Workspace/dotfiles
 
 # Generate SSH key
 echo -e "-----GENERATE SSH KEY-----"
