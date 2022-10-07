@@ -58,6 +58,8 @@ curl -LO https://github.com/ClementTsang/bottom/releases/download/0.6.8/bottom_0
 sudo dpkg -i bottom_0.6.8_amd64.deb
 flatpak install flathub com.discordapp.Discord
 
+#TODO: Python environment
+
 # manual install - go, fonts, neovim
 curl -LO https://go.dev/dl/go1.19.2.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf go1.19.2.linux-amd64.tar.gz
@@ -71,6 +73,10 @@ make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
 cd ..
 rm -rf neovim
+
+git clone git@github.com:savq/paq-nvim.git $(HOME)/.local/share/nvim/site/pack/paqs/start/paq-nvim/
+pip install python-lsp-server
+nvim --headless -c 'PaqInstall' +q
 
 #TODO: Neovim LSPs etc
 
