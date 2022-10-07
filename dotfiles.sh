@@ -8,8 +8,8 @@ sudo apt update && sudo apt upgrade -y
 
 # Remove old installs/files
 echo -e "-----REMOVE UNNEEDED FILES-----"
-rm -rf $HOME/.go
-# remove fonts
+sudo rm -rf /usr/local/go
+find $(HOME)/share/fonts/ -name "*Nerd*" -delete
 
 # gnome settings
 echo -e "-----GNOME SETTINGS-----"
@@ -29,7 +29,7 @@ rm -rf $(HOME)/Desktop \
 mkdir $(HOME)/Workspace
 
 # apt install everything
-echo -e "-----APT INSTALL-----"
+echo -e "-----INSTALL PACKAGES-----"
 sudo apt-get install \
 blueman \
 build-essential \
@@ -54,18 +54,36 @@ zsh \
 -y
 
 # Other installs
-flatpak install flathub com.discordapp.Discord
 curl -LO https://github.com/ClementTsang/bottom/releases/download/0.6.8/bottom_0.6.8_amd64.deb
 sudo dpkg -i bottom_0.6.8_amd64.deb
+flatpak install flathub com.discordapp.Discord
 
-# manual install - neovim, fonts, go
+# manual install - go, fonts, neovim
+curl -LO https://go.dev/dl/go1.19.2.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf go1.19.2.linux-amd64.tar.gz
+
+curl -L https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono.otf > DroidSansMono_NerdFont
+mv DroidSansMono_NerdFont $(HOME)/share/fonts/
+
+git clone git@github.com:neovim/neovim.git
+cd neovim
+make CMAKE_BUILD_TYPE=RelWithDebInfo
+sudo make install
+cd ..
+rm -rf neovim
+
+#TODO: Neovim LSPs etc
 
 # set up symlinks
 echo -e "-----SET UP CONFIG SYMLINKS-----"
 git clone git@github.com:Ttibsi/dotfiles.git $(HOME)/Workspace/dotfiles
 
+#TODO symlinks
+
 # Tidy up 
 rm -rf $(HOME)/Downloads/*
+sudo apt autoclean -y
+sudo apt autoremove -y
 
 # Generate SSH key
 echo -e "-----GENERATE SSH KEY-----"
