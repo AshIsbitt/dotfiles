@@ -14,6 +14,7 @@ rm -rf $HOME/.go
 # gnome settings
 echo -e "-----GNOME SETTINGS-----"
 gsettings set org.gnome.desktop.interface show-battery-percentage true
+xdotool key super+y # Enable pop tiling
 
 # File structure setup
 echo -e "-----SET UP FILE STRUCTURE-----"
@@ -29,6 +30,9 @@ mkdir $(HOME)/Workspace
 
 # apt install everything
 echo -e "-----APT INSTALL-----"
+sudo apt-get install \
+tmux \
+-y
 
 # manual install - neovim, fonts, go
 
