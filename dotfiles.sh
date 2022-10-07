@@ -78,7 +78,12 @@ rm -rf neovim
 echo -e "-----SET UP CONFIG SYMLINKS-----"
 git clone git@github.com:Ttibsi/dotfiles.git $(HOME)/Workspace/dotfiles
 
-#TODO symlinks
+ln -s $(HOME)/Workspace/dotfiles/configs/firefox/policies.json /usr/lib/firefox/distribution/policies.json
+ln -s $(HOME)/Workspace/dotfiles/configs/git-config/gitconfig $(HOME)/.gitconfig
+ln -s $(HOME)/Workspace/dotfiles/configs/internal-configs/90-touchpad.conf /etc/X11/xorg.conf.d/90-touchpad.conf
+ln -s $(HOME)/Workspace/dotfiles/configs/nvim $(HOME)/.config/nvim
+ln -s $(HOME)/Workspace/dotfiles/configs/tmux $(HOME)/.config/tmux
+ln -s $(HOME)/Workspace/dotfiles/configs/zsh-shell/ $(HOME)/
 
 # Tidy up 
 rm -rf $(HOME)/Downloads/*
