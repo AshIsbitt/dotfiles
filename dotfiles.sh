@@ -31,14 +31,41 @@ mkdir $(HOME)/Workspace
 # apt install everything
 echo -e "-----APT INSTALL-----"
 sudo apt-get install \
+blueman \
+build-essential \
+cheese \
+cowsay \
+curl \
+flameshot \
+gcc \
+git \
+libreoffice \
+neofetch \
+pipes \
+powertop \
+rpi-imager \
+tlp \
 tmux \
+tree \
+unzip \
+vlc \
+xclip \
+zsh \
 -y
+
+# Other installs
+flatpak install flathub com.discordapp.Discord
+curl -LO https://github.com/ClementTsang/bottom/releases/download/0.6.8/bottom_0.6.8_amd64.deb
+sudo dpkg -i bottom_0.6.8_amd64.deb
 
 # manual install - neovim, fonts, go
 
 # set up symlinks
 echo -e "-----SET UP CONFIG SYMLINKS-----"
 git clone git@github.com:Ttibsi/dotfiles.git $(HOME)/Workspace/dotfiles
+
+# Tidy up 
+rm -rf $(HOME)/Downloads/*
 
 # Generate SSH key
 echo -e "-----GENERATE SSH KEY-----"
