@@ -26,7 +26,9 @@ rm -rf $(HOME)/Desktop \
     $(HOME)/Templates \
     $(HOME)/Videos \
 
-mkdir $(HOME)/Workspace
+mkdir $(HOME)/Workspace \
+    $(HOME)/.opt \
+    $(HOME)/.opt/lua-language-server \
 
 # apt install everything
 echo -e "-----INSTALL PACKAGES-----"
@@ -58,7 +60,7 @@ curl -LO https://github.com/ClementTsang/bottom/releases/download/0.6.8/bottom_0
 sudo dpkg -i bottom_0.6.8_amd64.deb
 flatpak install flathub com.discordapp.Discord
 
-#TODO: Python environment
+#TODO: Python environment and pylsp for nvim
 
 # manual install - go, fonts, neovim
 curl -LO https://go.dev/dl/go1.19.2.linux-amd64.tar.gz
@@ -75,10 +77,14 @@ cd ..
 rm -rf neovim
 
 git clone git@github.com:savq/paq-nvim.git $(HOME)/.local/share/nvim/site/pack/paqs/start/paq-nvim/
-pip install python-lsp-server
-nvim --headless -c 'PaqInstall' +q
 
-#TODO: Neovim LSPs etc
+curl -Lo https://github.com/sumneko/lua-language-server/releases/download/3.5.6/lua-language-server-3.5.6-linux-x64.tar.gz $(HOME)/Downloads/lls.tar.gz
+sudo tar -C $(HOME)./opt/lua-language-server -xzf $(HOME)/Downloads/lls
+
+go install golang.org/x/tools/gopls@latest
+
+#pip install python-lsp-server
+nvim --headless -c 'PaqInstall' +q
 
 # set up symlinks
 echo -e "-----SET UP CONFIG SYMLINKS-----"
