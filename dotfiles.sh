@@ -68,7 +68,7 @@ flatpak install -y --noninteractive flathub com.discordapp.Discord
 echo -e "-----CONFIGURE PYTHON ENVIRONMENT-----"
 curl -Lo $HOME/Downloads/virtualenv.pyz https://bootstrap.pypa.io/virtualenv.pyz
 python3 $HOME/Downloads/virtualenv.pyz $HOME/.opt/venv
-$HOME/opt/venv/bin/pip install virtualenv
+$HOME/.opt/venv/bin/pip install virtualenv
 ln -s $HOME/bin/virtualenv $HOME/opt/venv/bin/virtualenv
 
 echo -e "-----MANUAL INSTALLATIONS-----"
