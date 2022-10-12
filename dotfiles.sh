@@ -31,6 +31,7 @@ rm -rf $HOME/Desktop \
 mkdir $HOME/Workspace \
     $HOME/.opt \
     $HOME/.opt/lua-language-server \
+    $HOME/.local/share/fonts/ \
 
 # apt install everything
 echo -e "-----INSTALL PACKAGES-----"
@@ -76,7 +77,7 @@ curl -LO https://go.dev/dl/go1.19.2.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf go1.19.2.linux-amd64.tar.gz
 
 curl -L https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono.otf > DroidSansMono_NerdFont
-mv $PWD/DroidSansMono_NerdFont $HOME/share/fonts/
+mv $PWD/DroidSansMono_NerdFont $HOME/.local/share/fonts/
 
 git clone https://github.com/neovim/neovim.git 
 cd neovim
@@ -85,7 +86,7 @@ sudo make install
 cd ..
 rm -rf neovim
 
-git clone git@github.com:savq/paq-nvim.git $HOME/.local/share/nvim/site/pack/paqs/start/paq-nvim/
+git clone https://githib.com/savq/paq-nvim.git $HOME/.local/share/nvim/site/pack/paqs/start/paq-nvim/
 
 $HOME/opt/venv/bin/pip install python-lsp-server
 
@@ -98,7 +99,7 @@ nvim --headless -c 'PaqInstall' +q
 
 # set up symlinks
 echo -e "-----SET UP CONFIG SYMLINKS-----"
-git clone git@github.com:Ttibsi/dotfiles.git $HOME/Workspace/dotfiles
+git clone https://github.com/Ttibsi/dotfiles.git $HOME/Workspace/dotfiles
 
 ln -s $HOME/Workspace/dotfiles/configs/firefox/policies.json /usr/lib/firefox/distribution/policies.json
 ln -s $HOME/Workspace/dotfiles/configs/git-config/gitconfig $HOME/.gitconfig
