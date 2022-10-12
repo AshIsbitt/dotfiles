@@ -40,6 +40,7 @@ sudo apt-get install \
 blueman \
 build-essential \
 cheese \
+cmake \
 cowsay \
 curl \
 flameshot \
