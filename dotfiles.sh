@@ -61,7 +61,7 @@ zsh \
 # Other installs
 curl -Lo $HOME/Downloads/btm.deb https://github.com/ClementTsang/bottom/releases/download/0.6.8/bottom_0.6.8_amd64.deb
 sudo dpkg -i $HOME/Downloads/btm.deb
-flatpak install flathub com.discordapp.Discord
+flatpak install -y --noninteractive flathub com.discordapp.Discord
 
 # Python environment - anthony explains 79
 echo -e "-----CONFIGURE PYTHON ENVIRONMENT-----"
@@ -76,9 +76,9 @@ curl -LO https://go.dev/dl/go1.19.2.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf go1.19.2.linux-amd64.tar.gz
 
 curl -L https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono.otf > DroidSansMono_NerdFont
-mv DroidSansMono_NerdFont $HOME/share/fonts/
+mv $PWD/DroidSansMono_NerdFont $HOME/share/fonts/
 
-git clone git@github.com:neovim/neovim.git
+git clone https://github.com/neovim/neovim.git 
 cd neovim
 make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
