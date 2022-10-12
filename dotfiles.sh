@@ -12,6 +12,7 @@ sudo rm -rf /usr/local/go
 rm -rf $HOME/Workspace \
     $HOME/.opt \
     $HOME/.opt/lua-language-server \
+    /usr/lib/firefox/distribution/policies.json \
 
 # gnome settings
 echo -e "-----GNOME SETTINGS-----"
@@ -46,7 +47,6 @@ gcc \
 git \
 libreoffice \
 neofetch \
-pipes \
 powertop \
 python3 \
 rpi-imager \
@@ -72,7 +72,7 @@ $HOME/opt/venv/bin/pip install virtualenv
 ln -s $HOME/bin/virtualenv $HOME/opt/venv/bin/virtualenv
 
 echo -e "-----MANUAL INSTALLATIONS-----"
-# manual install - go, fonts, neovim
+# manual install - go, fonts, neovim, OMZ
 curl -LO https://go.dev/dl/go1.19.2.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf go1.19.2.linux-amd64.tar.gz
 
@@ -86,7 +86,10 @@ sudo make install
 cd ..
 rm -rf neovim
 
-git clone https://githib.com/savq/paq-nvim.git $HOME/.local/share/nvim/site/pack/paqs/start/paq-nvim/
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+git clone https://github.com/savq/paq-nvim.git $HOME/.local/share/nvim/site/pack/paqs/start/paq-nvim/
 
 $HOME/opt/venv/bin/pip install python-lsp-server
 
