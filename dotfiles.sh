@@ -9,7 +9,9 @@ sudo apt update && sudo apt upgrade -y
 # Remove old installs/files
 echo -e "-----REMOVE UNNEEDED FILES-----"
 sudo rm -rf /usr/local/go
-find $(HOME)/share/fonts/ -name "*Nerd*" -delete
+rm -rf $(HOME)/Workspace \
+    $(HOME)/.opt \
+    $(HOME)/.opt/lua-language-server \
 
 # gnome settings
 echo -e "-----GNOME SETTINGS-----"
@@ -45,6 +47,7 @@ libreoffice \
 neofetch \
 pipes \
 powertop \
+python3 \
 rpi-imager \
 tlp \
 tmux \
@@ -56,12 +59,18 @@ zsh \
 -y
 
 # Other installs
-curl -LO https://github.com/ClementTsang/bottom/releases/download/0.6.8/bottom_0.6.8_amd64.deb
-sudo dpkg -i bottom_0.6.8_amd64.deb
+curl -Lo $(HOME)/Downloads/btm.deb https://github.com/ClementTsang/bottom/releases/download/0.6.8/bottom_0.6.8_amd64.deb
+sudo dpkg -i $(HOME)/Downloads/btm.deb
 flatpak install flathub com.discordapp.Discord
 
-#TODO: Python environment and pylsp for nvim
+# Python environment - anthony explains 79
+echo -e "-----CONFIGURE PYTHON ENVIRONMENT-----"
+curl -Lo $(HOME)/Downloads/virtualenv.pyz https://bootstrap.pypa.io/virtualenv.pyz
+python3 $(HOME)/Downloads/virtualenv.pyz $(HOME)/.opt/venv
+$(HOME)/opt/venv/bin/pip install virtualenv
+ln -s $(HOME)/bin/virtualenv $(HOME)/opt/venv/bin/virtualenv
 
+echo -e "-----MANUAL INSTALLATIONS-----"
 # manual install - go, fonts, neovim
 curl -LO https://go.dev/dl/go1.19.2.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf go1.19.2.linux-amd64.tar.gz
@@ -78,12 +87,13 @@ rm -rf neovim
 
 git clone git@github.com:savq/paq-nvim.git $(HOME)/.local/share/nvim/site/pack/paqs/start/paq-nvim/
 
+$(HOME)/opt/venv/bin/pip install python-lsp-server
+
 curl -Lo https://github.com/sumneko/lua-language-server/releases/download/3.5.6/lua-language-server-3.5.6-linux-x64.tar.gz $(HOME)/Downloads/lls.tar.gz
 sudo tar -C $(HOME)./opt/lua-language-server -xzf $(HOME)/Downloads/lls
 
 go install golang.org/x/tools/gopls@latest
 
-#pip install python-lsp-server
 nvim --headless -c 'PaqInstall' +q
 
 # set up symlinks
@@ -98,6 +108,7 @@ ln -s $(HOME)/Workspace/dotfiles/configs/tmux $(HOME)/.config/tmux
 ln -s $(HOME)/Workspace/dotfiles/configs/zsh-shell/ $(HOME)/
 
 # Tidy up 
+echo -e "-----CLEAN UP-----"
 rm -rf $(HOME)/Downloads/*
 sudo apt autoclean -y
 sudo apt autoremove -y
@@ -112,6 +123,6 @@ if ! [[ -f "$SSH_DIR/authorized_keys" ]]; then
 fi
 
 cat "$SSH_DIR/id_rsa.pub" | xclip -selection c
-echo Add to account here: https://github.com/settings/keys
+echo "Add to account here: https://github.com/settings/keys"
 
 echo -e "Configuration complete"
