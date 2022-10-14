@@ -9,7 +9,7 @@ sudo apt update && sudo apt upgrade -y
 # Remove old installs/files
 echo -e "-----REMOVE UNNEEDED FILES-----"
 sudo rm -rf /usr/local/go
-rm -rf $HOME/Workspace \
+sudo rm -rf $HOME/Workspace \
     $HOME/.opt \
     $HOME/.opt/lua-language-server \
     /usr/lib/firefox/distribution/policies.json \
@@ -70,7 +70,9 @@ echo -e "-----CONFIGURE PYTHON ENVIRONMENT-----"
 curl -Lo $HOME/Downloads/virtualenv.pyz https://bootstrap.pypa.io/virtualenv.pyz
 python3 $HOME/Downloads/virtualenv.pyz $HOME/.opt/venv
 $HOME/.opt/venv/bin/pip install virtualenv
-ln -s $HOME/bin/virtualenv $HOME/opt/venv/bin/virtualenv
+ln -s $HOME/bin/virtualenv $HOME/.opt/venv/bin/virtualenv
+l$HOME/.opt/venv/bin/python3 -m pip install --upgrade pip
+
 
 echo -e "-----MANUAL INSTALLATIONS-----"
 # manual install - go, fonts, neovim, OMZ
