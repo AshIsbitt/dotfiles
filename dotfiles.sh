@@ -90,12 +90,13 @@ echo -e "-----MANUAL INSTALLATIONS-----"
 #TODO: Go doesn't install properly
 curl -Lo $HOME/Downloads/go1.19.2.linux-amd64.tar.gz https://go.dev/dl/go1.19.2.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf $HOME/Downloads/go1.19.2.linux-amd64.tar.gz
-export PATH=$PATH:/usr/local/go/bin
+echo "export PATH=$PATH:/usr/local/go/bin" >> .bashrc
+mv go .go
 
 curl -L https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono.otf > DroidSansMono_NerdFont
 mv $PWD/DroidSansMono_NerdFont $HOME/.local/share/fonts/
 
-git clone https://github.com/neovim/neovim.git $HOME/Downloads/neovim 
+git clone https://github.com/neovim/neovim.git $HOME/Downloads/neovim
 cd $HOME/Downloads/neovim
 git checkout stable
 make CMAKE_BUILD_TYPE=RelWithDebInfo
@@ -127,11 +128,11 @@ git clone https://github.com/Ttibsi/dotfiles.git $HOME/Workspace/dotfiles
 sudo ln -s $HOME/Workspace/dotfiles/configs/firefox/policies.json /usr/lib/firefox/distribution/policies.json
 ln -s $HOME/Workspace/dotfiles/configs/git-config/gitconfig $HOME/.gitconfig
 sudo ln -s $HOME/Workspace/dotfiles/configs/internal-configs/90-touchpad.conf /etc/X11/xorg.conf.d/90-touchpad.conf
-ln -s $HOME/Workspace/dotfiles/configs/nvim $HOME/.config/nvim
-ln -s $HOME/Workspace/dotfiles/configs/tmux $HOME/.config/tmux
+ln -sd $HOME/Workspace/dotfiles/configs/nvim $HOME/.config
+ln -sd $HOME/Workspace/dotfiles/configs/tmux $HOME/.config
 ln -s $HOME/Workspace/dotfiles/configs/zsh-shell/zshrc $HOME/.zshrc
-ln -s $HOME/Workspace/dotfiles/configs/zsh-shell/oh-my-zsh $HOME/.oh-my-zsh
-ln -s $HOME/Workspace/dotfiles/configs/zsh-shell/p10k.zsh $HOME/.p10k.zsh 
+ln -sd $HOME/Workspace/dotfiles/configs/zsh-shell/.oh-my-zsh $HOME
+ln -s $HOME/Workspace/dotfiles/configs/zsh-shell/p10k.zsh $HOME/.p10k.zsh
 
 # Tidy up 
 echo -e "-----CLEAN UP-----"
