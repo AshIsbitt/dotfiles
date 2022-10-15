@@ -91,7 +91,7 @@ echo -e "-----MANUAL INSTALLATIONS-----"
 curl -Lo $HOME/Downloads/go1.19.2.linux-amd64.tar.gz https://go.dev/dl/go1.19.2.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf $HOME/Downloads/go1.19.2.linux-amd64.tar.gz
 echo "export PATH=$PATH:/usr/local/go/bin" >> .bashrc
-mv go .go
+mv $HOME/go $HOME/.go
 
 curl -L https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono.otf > DroidSansMono_NerdFont
 mv $PWD/DroidSansMono_NerdFont $HOME/.local/share/fonts/
@@ -108,8 +108,6 @@ wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 sh install.sh --unattended
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
-git clone https://github.com/savq/paq-nvim.git $HOME/.local/share/nvim/site/pack/paqs/start/paq-nvim/
-
 $HOME/.opt/venv/bin/pip install python-lsp-server
 
 curl -Lo  $HOME/Downloads/lls.tar.gz https://github.com/sumneko/lua-language-server/releases/download/3.5.6/lua-language-server-3.5.6-linux-x64.tar.gz
@@ -117,6 +115,7 @@ sudo tar -C $HOME/.opt/lua-language-server -xzf $HOME/Downloads/lls.tar.gz
 
 go install golang.org/x/tools/gopls@latest
 
+git clone --depth=1 https://github.com/savq/paq-nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
 nvim --headless -c 'PaqInstall' +q
 
 # set up symlinks
