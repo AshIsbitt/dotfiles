@@ -59,7 +59,7 @@ libtool \
 libtool-bin \
 neofetch \
 ninja-build \
-pkg-config \ 
+pkg-config \
 powertop \
 python3 \
 rpi-imager \
@@ -85,15 +85,16 @@ $HOME/.opt/venv/bin/pip install virtualenv
 sudo ln -s $HOME/.opt/venv/bin/virtualenv /usr/bin/virtualenv
 $HOME/.opt/venv/bin/python3 -m pip install --upgrade pip
 
-
 echo -e "-----MANUAL INSTALLATIONS-----"
 # manual install - go, fonts, neovim, OMZ
 curl -Lo $HOME/Downloads/go1.19.2.linux-amd64.tar.gz https://go.dev/dl/go1.19.2.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf $HOME/Downloads/go1.19.2.linux-amd64.tar.gz
+export PATH=$PATH:/usr/local/go/bin
 
 curl -L https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono.otf > DroidSansMono_NerdFont
 mv $PWD/DroidSansMono_NerdFont $HOME/.local/share/fonts/
 
+#TODO: NEovim doesn't install
 git clone https://github.com/neovim/neovim.git $HOME/Downloads/neovim 
 cd $HOME/Downloads/neovim
 git checkout stable
@@ -102,7 +103,8 @@ sudo make install
 cd ..
 rm -rf neovim
 
-CHSH="no" sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended --skip-chsh
+wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+sh install.sh --unattended
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
 git clone https://github.com/savq/paq-nvim.git $HOME/.local/share/nvim/site/pack/paqs/start/paq-nvim/
