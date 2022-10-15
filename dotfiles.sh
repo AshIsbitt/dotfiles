@@ -13,6 +13,9 @@ sudo rm -rf $HOME/Workspace \
     /usr/local/go \
     /usr/local/bin/nvim \
     /usr/bin/btm \
+    /usr/bin/virtualenv \
+    $HOME/.local/share/fonts/ \
+
 
 # gnome settings
 echo -e "-----GNOME SETTINGS-----"
@@ -79,7 +82,7 @@ echo -e "-----CONFIGURE PYTHON ENVIRONMENT-----"
 curl -Lo $HOME/Downloads/virtualenv.pyz https://bootstrap.pypa.io/virtualenv.pyz
 python3 $HOME/Downloads/virtualenv.pyz $HOME/.opt/venv
 $HOME/.opt/venv/bin/pip install virtualenv
-ln -s $HOME/bin/virtualenv $HOME/.opt/venv/bin/virtualenv
+sudo ln -s $HOME/.opt/venv/bin/virtualenv /usr/bin/virtualenv
 $HOME/.opt/venv/bin/python3 -m pip install --upgrade pip
 
 
