@@ -71,7 +71,7 @@ echo -e "-----CONFIGURE PYTHON ENVIRONMENT-----"
 curl -Lo $HOME/Downloads/virtualenv.pyz https://bootstrap.pypa.io/virtualenv.pyz
 python3 $HOME/Downloads/virtualenv.pyz $HOME/.opt/venv
 $HOME/.opt/venv/bin/pip install virtualenv
-ln -s $HOME/bin/virtualenv $HOME/.opt/venv/bin/virtualenv
+ln -s  $HOME/.opt/venv/bin/virtualenv $HOME/bin/virtualenv
 l$HOME/.opt/venv/bin/python3 -m pip install --upgrade pip
 
 
