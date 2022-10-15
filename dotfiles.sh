@@ -87,6 +87,7 @@ $HOME/.opt/venv/bin/python3 -m pip install --upgrade pip
 
 echo -e "-----MANUAL INSTALLATIONS-----"
 # manual install - go, fonts, neovim, OMZ
+#TODO: Go doesn't install properly
 curl -Lo $HOME/Downloads/go1.19.2.linux-amd64.tar.gz https://go.dev/dl/go1.19.2.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf $HOME/Downloads/go1.19.2.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
@@ -94,7 +95,6 @@ export PATH=$PATH:/usr/local/go/bin
 curl -L https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono.otf > DroidSansMono_NerdFont
 mv $PWD/DroidSansMono_NerdFont $HOME/.local/share/fonts/
 
-#TODO: NEovim doesn't install
 git clone https://github.com/neovim/neovim.git $HOME/Downloads/neovim 
 cd $HOME/Downloads/neovim
 git checkout stable
@@ -119,6 +119,7 @@ go install golang.org/x/tools/gopls@latest
 nvim --headless -c 'PaqInstall' +q
 
 # set up symlinks
+#TODO - symlink nvim and tmux folders properly
 echo -e "-----SET UP CONFIG SYMLINKS-----"
 sudo rm /usr/lib/firefox/distribution/policies.json 
 git clone https://github.com/Ttibsi/dotfiles.git $HOME/Workspace/dotfiles
@@ -128,7 +129,9 @@ ln -s $HOME/Workspace/dotfiles/configs/git-config/gitconfig $HOME/.gitconfig
 sudo ln -s $HOME/Workspace/dotfiles/configs/internal-configs/90-touchpad.conf /etc/X11/xorg.conf.d/90-touchpad.conf
 ln -s $HOME/Workspace/dotfiles/configs/nvim $HOME/.config/nvim
 ln -s $HOME/Workspace/dotfiles/configs/tmux $HOME/.config/tmux
-ln -s $HOME/Workspace/dotfiles/configs/zsh-shell/ $HOME/
+ln -s $HOME/Workspace/dotfiles/configs/zsh-shell/zshrc $HOME/.zshrc
+ln -s $HOME/Workspace/dotfiles/configs/zsh-shell/oh-my-zsh $HOME/.oh-my-zsh
+ln -s $HOME/Workspace/dotfiles/configs/zsh-shell/p10k.zsh $HOME/.p10k.zsh 
 
 # Tidy up 
 echo -e "-----CLEAN UP-----"
