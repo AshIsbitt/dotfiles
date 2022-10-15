@@ -14,7 +14,6 @@ sudo rm -rf $HOME/Workspace \
     /usr/local/bin/nvim \
     /usr/bin/btm \
 
-
 # gnome settings
 echo -e "-----GNOME SETTINGS-----"
 gsettings set org.gnome.desktop.interface show-battery-percentage true
@@ -38,17 +37,26 @@ mkdir $HOME/Workspace \
 # apt install everything
 echo -e "-----INSTALL PACKAGES-----"
 sudo apt-get install \
+autoconf \
+automake \
 blueman \
 build-essential \
 cheese \
 cmake \
 cowsay \
 curl \
+doxygen \
 flameshot \
 gcc \
+gettext \
 git \
+g++ \
 libreoffice \
+libtool \
+libtool-bin \
 neofetch \
+ninja-build \
+pkg-config \ 
 powertop \
 python3 \
 rpi-imager \
@@ -71,13 +79,13 @@ echo -e "-----CONFIGURE PYTHON ENVIRONMENT-----"
 curl -Lo $HOME/Downloads/virtualenv.pyz https://bootstrap.pypa.io/virtualenv.pyz
 python3 $HOME/Downloads/virtualenv.pyz $HOME/.opt/venv
 $HOME/.opt/venv/bin/pip install virtualenv
-ln -s  $HOME/.opt/venv/bin/virtualenv $HOME/bin/virtualenv
-l$HOME/.opt/venv/bin/python3 -m pip install --upgrade pip
+ln -s $HOME/bin/virtualenv $HOME/.opt/venv/bin/virtualenv
+$HOME/.opt/venv/bin/python3 -m pip install --upgrade pip
 
 
 echo -e "-----MANUAL INSTALLATIONS-----"
 # manual install - go, fonts, neovim, OMZ
-curl -LO https://go.dev/dl/go1.19.2.linux-amd64.tar.gz
+curl -Lo $HOME/Downloads/go1.19.2.linux-amd64.tar.gz https://go.dev/dl/go1.19.2.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf $HOME/Downloads/go1.19.2.linux-amd64.tar.gz
 
 curl -L https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono.otf > DroidSansMono_NerdFont
@@ -91,7 +99,7 @@ sudo make install
 cd ..
 rm -rf neovim
 
-CHSH="no" sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh --unattended --skip-chsh)"
+CHSH="no" sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended --skip-chsh
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
 git clone https://github.com/savq/paq-nvim.git $HOME/.local/share/nvim/site/pack/paqs/start/paq-nvim/
@@ -110,7 +118,7 @@ echo -e "-----SET UP CONFIG SYMLINKS-----"
 sudo rm /usr/lib/firefox/distribution/policies.json 
 git clone https://github.com/Ttibsi/dotfiles.git $HOME/Workspace/dotfiles
 
-ln -s $HOME/Workspace/dotfiles/configs/firefox/policies.json /usr/lib/firefox/distribution/policies.json
+sudo ln -s $HOME/Workspace/dotfiles/configs/firefox/policies.json /usr/lib/firefox/distribution/policies.json
 ln -s $HOME/Workspace/dotfiles/configs/git-config/gitconfig $HOME/.gitconfig
 sudo ln -s $HOME/Workspace/dotfiles/configs/internal-configs/90-touchpad.conf /etc/X11/xorg.conf.d/90-touchpad.conf
 ln -s $HOME/Workspace/dotfiles/configs/nvim $HOME/.config/nvim
