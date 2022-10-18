@@ -4,7 +4,7 @@ SSH_DIR="$HOME/.ssh"
 
 # apt update && upgrade
 echo -e "-----UPDATE && UPGRADE-----"
-sudo apt update && sudo apt upgrade -y
+sudo apt-get update && apt-get upgrade -y
 
 # Remove old installs/files
 echo -e "-----REMOVE UNNEEDED FILES-----"
@@ -39,7 +39,7 @@ mkdir $HOME/Workspace \
 
 # apt install everything
 echo -e "-----INSTALL PACKAGES-----"
-sudo apt-get install \
+sudo apt install \
 autoconf \
 automake \
 blueman \
