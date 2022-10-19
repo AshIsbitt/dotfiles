@@ -40,7 +40,7 @@ mkdir $HOME/Workspace \
 
 # apt install everything
 echo -e "-----INSTALL PACKAGES-----"
-sudo apt install \
+sudo apt-get install \
 autoconf \
 automake \
 blueman \
