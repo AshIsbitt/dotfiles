@@ -17,7 +17,6 @@ sudo rm -rf $HOME/Workspace \
     /usr/bin/virtualenv \
     $HOME/.local/share/fonts/ \
 
-
 # gnome settings
 echo -e "-----GNOME SETTINGS-----"
 gsettings set org.gnome.desktop.interface show-battery-percentage true
@@ -86,6 +85,7 @@ $HOME/.opt/venv/bin/pip install virtualenv
 sudo ln -s $HOME/.opt/venv/bin/virtualenv /usr/bin/virtualenv
 $HOME/.opt/venv/bin/python3 -m pip install --upgrade pip
 
+
 echo -e "-----MANUAL INSTALLATIONS-----"
 # manual install - go, fonts, neovim, OMZ
 curl -Lo $HOME/Downloads/go1.19.2.linux-amd64.tar.gz https://go.dev/dl/go1.19.2.linux-amd64.tar.gz
@@ -107,19 +107,9 @@ rm -rf neovim
 wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 sh install.sh --unattended
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-
-$HOME/.opt/venv/bin/pip install python-lsp-server
-
-curl -Lo  $HOME/Downloads/lls.tar.gz https://github.com/sumneko/lua-language-server/releases/download/3.5.6/lua-language-server-3.5.6-linux-x64.tar.gz
-sudo tar -C $HOME/.opt/lua-language-server -xzf $HOME/Downloads/lls.tar.gz
-
-go install golang.org/x/tools/gopls@latest
-
-git clone --depth=1 https://github.com/savq/paq-nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
-nvim --headless -c 'PaqInstall' +q
+rm $HOME/.zshrc
 
 # set up symlinks
-#TODO - symlink nvim and tmux folders properly
 echo -e "-----SET UP CONFIG SYMLINKS-----"
 sudo rm /usr/lib/firefox/distribution/policies.json 
 git clone https://github.com/Ttibsi/dotfiles.git $HOME/Workspace/dotfiles
@@ -133,6 +123,20 @@ ln -sd $HOME/Workspace/dotfiles/configs/tmux $HOME/.config
 ln -s $HOME/Workspace/dotfiles/configs/zsh-shell/zshrc $HOME/.zshrc
 ln -sd $HOME/Workspace/dotfiles/configs/zsh-shell/.oh-my-zsh $HOME
 ln -s $HOME/Workspace/dotfiles/configs/zsh-shell/p10k.zsh $HOME/.p10k.zsh
+
+
+# Nvim config install
+echo -e "-----SET UP NEOVIM REQUIREMENTS-----"
+$HOME/.opt/venv/bin/pip install python-lsp-server
+
+curl -Lo  $HOME/Downloads/lls.tar.gz https://github.com/sumneko/lua-language-server/releases/download/3.5.6/lua-language-server-3.5.6-linux-x64.tar.gz
+sudo tar -C $HOME/.opt/lua-language-server -xzf $HOME/Downloads/lls.tar.gz
+
+go install golang.org/x/tools/gopls@latest
+
+# TODO: There's an issue here
+git clone --depth=1 https://github.com/savq/paq-nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
+nvim --headless -c 'PaqInstall' +q
 
 # Tidy up 
 echo -e "-----CLEAN UP-----"
