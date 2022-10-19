@@ -4,7 +4,8 @@ SSH_DIR="$HOME/.ssh"
 
 # apt update && upgrade
 echo -e "-----UPDATE && UPGRADE-----"
-sudo apt-get update && apt-get upgrade -y
+sudo apt-get update 
+sudo apt-get upgrade -y
 
 # Remove old installs/files
 echo -e "-----REMOVE UNNEEDED FILES-----"
@@ -38,6 +39,7 @@ mkdir $HOME/Workspace \
     $HOME/.local/share/fonts/ \
 
 # apt install everything
+#TODO: Make sure this doesn't log out the account
 echo -e "-----INSTALL PACKAGES-----"
 sudo apt install \
 autoconf \
@@ -90,7 +92,7 @@ echo -e "-----MANUAL INSTALLATIONS-----"
 #TODO: Go doesn't install properly
 curl -Lo $HOME/Downloads/go1.19.2.linux-amd64.tar.gz https://go.dev/dl/go1.19.2.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf $HOME/Downloads/go1.19.2.linux-amd64.tar.gz
-echo "export PATH=$PATH:/usr/local/go/bin" >> .bashrc
+echo "export PATH=$PATH:/usr/local/go/bin" >> $HOME/.bashrc
 mv $HOME/go $HOME/.go
 
 curl -L https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono.otf > DroidSansMono_NerdFont
@@ -107,6 +109,7 @@ rm -rf neovim
 wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 sh install.sh --unattended
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+#TODO: This doesn't install p10k
 
 $HOME/.opt/venv/bin/pip install python-lsp-server
 
