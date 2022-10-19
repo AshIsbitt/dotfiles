@@ -5,7 +5,7 @@ SSH_DIR="$HOME/.ssh"
 # apt update && upgrade
 echo -e "-----UPDATE && UPGRADE-----"
 sudo apt-get update 
-sudo apt-get upgrade -y
+sudo apt-get -y upgrade 
 
 # Remove old installs/files
 echo -e "-----REMOVE UNNEEDED FILES-----"
@@ -39,7 +39,6 @@ mkdir $HOME/Workspace \
     $HOME/.local/share/fonts/ \
 
 # apt install everything
-#TODO: Make sure this doesn't log out the account
 echo -e "-----INSTALL PACKAGES-----"
 sudo apt install \
 autoconf \
@@ -89,7 +88,6 @@ $HOME/.opt/venv/bin/python3 -m pip install --upgrade pip
 
 echo -e "-----MANUAL INSTALLATIONS-----"
 # manual install - go, fonts, neovim, OMZ
-#TODO: Go doesn't install properly
 curl -Lo $HOME/Downloads/go1.19.2.linux-amd64.tar.gz https://go.dev/dl/go1.19.2.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf $HOME/Downloads/go1.19.2.linux-amd64.tar.gz
 echo "export PATH=$PATH:/usr/local/go/bin" >> $HOME/.bashrc
@@ -109,7 +107,6 @@ rm -rf neovim
 wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 sh install.sh --unattended
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-#TODO: This doesn't install p10k
 
 $HOME/.opt/venv/bin/pip install python-lsp-server
 
@@ -126,6 +123,7 @@ nvim --headless -c 'PaqInstall' +q
 echo -e "-----SET UP CONFIG SYMLINKS-----"
 sudo rm /usr/lib/firefox/distribution/policies.json 
 git clone https://github.com/Ttibsi/dotfiles.git $HOME/Workspace/dotfiles
+git -C Workspace/dotfiles checkout shell-script
 
 sudo ln -s $HOME/Workspace/dotfiles/configs/firefox/policies.json /usr/lib/firefox/distribution/policies.json
 ln -s $HOME/Workspace/dotfiles/configs/git-config/gitconfig $HOME/.gitconfig
