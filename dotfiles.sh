@@ -113,7 +113,7 @@ rm $HOME/.zshrc
 echo -e "-----SET UP CONFIG SYMLINKS-----"
 sudo rm /usr/lib/firefox/distribution/policies.json 
 git clone https://github.com/Ttibsi/dotfiles.git $HOME/Workspace/dotfiles
-git -C Workspace/dotfiles checkout shell-script
+git -C $HOME/Workspace/dotfiles checkout shell-script
 
 sudo ln -s $HOME/Workspace/dotfiles/configs/firefox/policies.json /usr/lib/firefox/distribution/policies.json
 ln -s $HOME/Workspace/dotfiles/configs/git-config/gitconfig $HOME/.gitconfig
@@ -123,7 +123,6 @@ ln -sd $HOME/Workspace/dotfiles/configs/tmux $HOME/.config
 ln -s $HOME/Workspace/dotfiles/configs/zsh-shell/zshrc $HOME/.zshrc
 ln -sd $HOME/Workspace/dotfiles/configs/zsh-shell/.oh-my-zsh $HOME
 ln -s $HOME/Workspace/dotfiles/configs/zsh-shell/p10k.zsh $HOME/.p10k.zsh
-
 
 # Nvim config install
 echo -e "-----SET UP NEOVIM REQUIREMENTS-----"
