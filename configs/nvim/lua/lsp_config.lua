@@ -125,7 +125,7 @@ local function defaults()
 	)
 
 	-- This is from nvim-cmp
-	capabilities = require("cmp_nvim_lsp").update_capabilities(
+	capabilities = require("cmp_nvim_lsp").default_capabilities(
 		vim.lsp.protocol.make_client_capabilities()
 	)
 
@@ -147,12 +147,13 @@ local function init()
 	capabilities = defaults()
 
 	-- python
-	require("lspconfig").pyright.setup({
+	require("lspconfig").pylsp.setup({
 		on_attach = on_attach,
 		capabilities = capabilities,
 	})
 
 	-- lua
+
 	if vim.loop.os_uname().sysname == "Darwin" then
 		local sumneko_version =
 			scandir("/usr/local/Cellar/lua-language-server")[1]
@@ -204,6 +205,12 @@ local function init()
 	--cmake
 	--pip install cmake-language-server
 	require("lspconfig").cmake.setup({
+		on_attach = on_attach,
+		capabilities = capabilities,
+	})
+
+	-- Docker
+	require("lspconfig").dockerls.setup({
 		on_attach = on_attach,
 		capabilities = capabilities,
 	})

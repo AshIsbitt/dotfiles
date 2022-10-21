@@ -136,6 +136,7 @@ go install golang.org/x/tools/gopls@latest
 # TODO: There's an issue here
 git clone --depth=1 https://github.com/savq/paq-nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
 nvim --headless -c 'PaqInstall' +q
+nvim --headless -c 'PaqInstall' +q
 
 # Tidy up 
 echo -e "-----CLEAN UP-----"
