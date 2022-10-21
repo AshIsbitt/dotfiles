@@ -3,12 +3,12 @@
 SSH_DIR="$HOME/.ssh"
 
 # apt update && upgrade
-echo -e "-----UPDATE && UPGRADE-----"
+echo -e "\n-----UPDATE && UPGRADE-----"
 sudo apt-get update 
 sudo apt-get -y upgrade 
 
 # Remove old installs/files
-echo -e "-----REMOVE UNNEEDED FILES-----"
+echo -e "\n-----REMOVE UNNEEDED FILES-----"
 sudo rm -rf $HOME/Workspace \
     $HOME/.opt \
     /usr/local/go \
@@ -18,12 +18,12 @@ sudo rm -rf $HOME/Workspace \
     $HOME/.local/share/fonts/ \
 
 # gnome settings
-echo -e "-----GNOME SETTINGS-----"
+echo -e "\n-----GNOME SETTINGS-----"
 gsettings set org.gnome.desktop.interface show-battery-percentage true
 xdotool key super+y # Enable pop tiling
 
 # File structure setup
-echo -e "-----SET UP FILE STRUCTURE-----"
+echo -e "\n-----SET UP FILE STRUCTURE-----"
 rm -rf $HOME/Desktop \
     $HOME/Documents \
     $HOME/Music \
@@ -38,7 +38,7 @@ mkdir $HOME/Workspace \
     $HOME/.local/share/fonts/ \
 
 # apt install everything
-echo -e "-----INSTALL PACKAGES-----"
+echo -e "\n-----INSTALL PACKAGES-----"
 sudo apt-get install \
 autoconf \
 automake \
@@ -78,7 +78,7 @@ sudo dpkg -i $HOME/Downloads/btm.deb
 flatpak install -y --noninteractive flathub com.discordapp.Discord
 
 # Python environment - anthony explains 79
-echo -e "-----CONFIGURE PYTHON ENVIRONMENT-----"
+echo -e "\n-----CONFIGURE PYTHON ENVIRONMENT-----"
 curl -Lo $HOME/Downloads/virtualenv.pyz https://bootstrap.pypa.io/virtualenv.pyz
 python3 $HOME/Downloads/virtualenv.pyz $HOME/.opt/venv
 $HOME/.opt/venv/bin/pip install virtualenv
@@ -86,11 +86,12 @@ sudo ln -s $HOME/.opt/venv/bin/virtualenv /usr/bin/virtualenv
 $HOME/.opt/venv/bin/python3 -m pip install --upgrade pip
 
 
-echo -e "-----MANUAL INSTALLATIONS-----"
+echo -e "\n-----MANUAL INSTALLATIONS-----"
 # manual install - go, fonts, neovim, OMZ
 curl -Lo $HOME/Downloads/go1.19.2.linux-amd64.tar.gz https://go.dev/dl/go1.19.2.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf $HOME/Downloads/go1.19.2.linux-amd64.tar.gz
 echo "export PATH=$PATH:/usr/local/go/bin" >> $HOME/.bashrc
+source ~/.bashrc
 mv $HOME/go $HOME/.go
 
 curl -L https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono.otf > DroidSansMono_NerdFont
@@ -110,7 +111,7 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 rm $HOME/.zshrc
 
 # set up symlinks
-echo -e "-----SET UP CONFIG SYMLINKS-----"
+echo -e "\n-----SET UP CONFIG SYMLINKS-----"
 sudo rm /usr/lib/firefox/distribution/policies.json 
 git clone https://github.com/Ttibsi/dotfiles.git $HOME/Workspace/dotfiles
 git -C $HOME/Workspace/dotfiles checkout shell-script
@@ -125,7 +126,7 @@ ln -sd $HOME/Workspace/dotfiles/configs/zsh-shell/.oh-my-zsh $HOME
 ln -s $HOME/Workspace/dotfiles/configs/zsh-shell/p10k.zsh $HOME/.p10k.zsh
 
 # Nvim config install
-echo -e "-----SET UP NEOVIM REQUIREMENTS-----"
+echo -e "\n-----SET UP NEOVIM REQUIREMENTS-----"
 $HOME/.opt/venv/bin/pip install python-lsp-server
 
 curl -Lo  $HOME/Downloads/lls.tar.gz https://github.com/sumneko/lua-language-server/releases/download/3.5.6/lua-language-server-3.5.6-linux-x64.tar.gz
@@ -136,16 +137,17 @@ go install golang.org/x/tools/gopls@latest
 # TODO: There's an issue here
 git clone --depth=1 https://github.com/savq/paq-nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
 nvim --headless -c 'PaqInstall' +q
-nvim --headless -c 'PaqInstall' +q
+echo -e "This probably shows an error, but works fine"
+nvim --headless -c 'PaqInstall' +q 
 
 # Tidy up 
-echo -e "-----CLEAN UP-----"
+echo -e "\n-----CLEAN UP-----"
 rm -rf $HOME/Downloads/*
 sudo apt autoclean -y
 sudo apt autoremove -y
 
 # Generate SSH key
-echo -e "-----GENERATE SSH KEY-----"
+echo -e "\n-----GENERATE SSH KEY-----"
 if ! [[ -f "$SSH_DIR/authorized_keys" ]]; then
     mkdir -p "$SSH_DIR"
     chmod 700 "$SSH_DIR"
