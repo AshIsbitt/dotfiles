@@ -133,7 +133,7 @@ $HOME/.opt/venv/bin/pip install python-lsp-server
 curl -Lo  $HOME/Downloads/lls.tar.gz https://github.com/sumneko/lua-language-server/releases/download/3.5.6/lua-language-server-3.5.6-linux-x64.tar.gz
 sudo tar -C $HOME/.opt/lua-language-server -xzf $HOME/Downloads/lls.tar.gz
 
-go install golang.org/x/tools/gopls@latest
+/usr/local/go/bin/go install golang.org/x/tools/gopls@latest
 
 # TODO: There's an issue here
 git clone --depth=1 https://github.com/savq/paq-nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
