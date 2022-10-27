@@ -107,9 +107,7 @@ rm -rf neovim
 wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 sh install.sh --unattended
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-# TODO: Make sure these get distributed properly
 rm $HOME/.zshrc
-rm -rf $HOME/.oh-my-zsh
 
 # set up symlinks
 echo -e "\n-----SET UP CONFIG SYMLINKS-----"
@@ -123,7 +121,7 @@ sudo ln -s $HOME/Workspace/dotfiles/configs/internal-configs/90-touchpad.conf /e
 ln -sd $HOME/Workspace/dotfiles/configs/nvim $HOME/.config
 ln -sd $HOME/Workspace/dotfiles/configs/tmux $HOME/.config
 ln -s $HOME/Workspace/dotfiles/configs/zsh-shell/zshrc $HOME/.zshrc
-ln -sd $HOME/Workspace/dotfiles/configs/zsh-shell/.oh-my-zsh $HOME
+ln -sd $HOME/Workspace/dotfiles/configs/zsh-shell/.oh-my-zsh/custom $HOME/.oh-my-zsh
 ln -s $HOME/Workspace/dotfiles/configs/zsh-shell/p10k.zsh $HOME/.p10k.zsh
 
 # Nvim config install
@@ -133,14 +131,12 @@ $HOME/.opt/venv/bin/pip install python-lsp-server
 curl -Lo  $HOME/Downloads/lls.tar.gz https://github.com/sumneko/lua-language-server/releases/download/3.5.6/lua-language-server-3.5.6-linux-x64.tar.gz
 sudo tar -C $HOME/.opt/lua-language-server -xzf $HOME/Downloads/lls.tar.gz
 
-# TODO Test this
 /usr/local/go/bin/go install golang.org/x/tools/gopls@latest
 
 # TODO: There's an issue here
+# Need to fix the nvim theme to run install
 git clone --depth=1 https://github.com/savq/paq-nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
 nvim --headless -c 'PaqInstall' +q
-echo -e "This probably shows an error, but works fine"
-nvim --headless -c 'PaqInstall' +q 
 
 # Tidy up 
 echo -e "\n-----CLEAN UP-----"
