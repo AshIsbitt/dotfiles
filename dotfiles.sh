@@ -15,7 +15,7 @@ sudo rm -rf $HOME/Workspace \
     /usr/local/bin/nvim \
     /usr/bin/btm \
     /usr/bin/virtualenv \
-    $HOME/.local/share/fonts/ \
+    $HOME/.local/share/fonts/DroidSansMono_NerdFont /
 
 # gnome settings
 echo -e "\n-----GNOME SETTINGS-----"
@@ -91,11 +91,10 @@ echo -e "\n-----MANUAL INSTALLATIONS-----"
 curl -Lo $HOME/Downloads/go1.19.2.linux-amd64.tar.gz https://go.dev/dl/go1.19.2.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf $HOME/Downloads/go1.19.2.linux-amd64.tar.gz
 echo "export PATH=$PATH:/usr/local/go/bin" >> $HOME/.bashrc
-source $HOME/.bashrc
 mv $HOME/go $HOME/.go
 
 curl -L https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono.otf > DroidSansMono_NerdFont
-mv $PWD/DroidSansMono_NerdFont $HOME/.local/share/fonts/
+mv $PWD/DroidSansMono_NerdFont $HOME/.local/share/fonts/DroidSansMono_NerdFont
 
 git clone https://github.com/neovim/neovim.git $HOME/Downloads/neovim
 cd $HOME/Downloads/neovim
@@ -108,6 +107,7 @@ rm -rf neovim
 wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 sh install.sh --unattended
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+# TODO: Make sure these get distributed properly
 rm $HOME/.zshrc
 rm -rf $HOME/.oh-my-zsh
 
@@ -133,6 +133,7 @@ $HOME/.opt/venv/bin/pip install python-lsp-server
 curl -Lo  $HOME/Downloads/lls.tar.gz https://github.com/sumneko/lua-language-server/releases/download/3.5.6/lua-language-server-3.5.6-linux-x64.tar.gz
 sudo tar -C $HOME/.opt/lua-language-server -xzf $HOME/Downloads/lls.tar.gz
 
+# TODO Test this
 /usr/local/go/bin/go install golang.org/x/tools/gopls@latest
 
 # TODO: There's an issue here
