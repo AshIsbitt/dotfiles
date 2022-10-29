@@ -113,6 +113,7 @@ rm $HOME/.zshrc
 # set up symlinks
 echo -e "\n-----SET UP CONFIG SYMLINKS-----"
 sudo rm /usr/lib/firefox/distribution/policies.json 
+rm -rf $HOME/.oh-my-zsh/custom
 git clone https://github.com/Ttibsi/dotfiles.git $HOME/Workspace/dotfiles
 git -C $HOME/Workspace/dotfiles checkout shell-script
 
@@ -134,13 +135,12 @@ sudo tar -C $HOME/.opt/lua-language-server -xzf $HOME/Downloads/lls.tar.gz
 
 /usr/local/go/bin/go install golang.org/x/tools/gopls@latest
 
-# TODO: There's an issue here
-# Need to fix the nvim theme to run install
 sleep 1
 git clone --depth=1 https://github.com/savq/paq-nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
 nvim --headless -c 'PaqInstall' +q
+@echo "PaqInstall will show an error here, but still succeeds"
 
-# Tidy up 
+# Tidy up
 echo -e "\n-----CLEAN UP-----"
 rm -rf $HOME/Downloads/*
 sudo apt autoclean -y
