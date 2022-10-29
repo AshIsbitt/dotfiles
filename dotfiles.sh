@@ -135,6 +135,7 @@ sudo tar -C $HOME/.opt/lua-language-server -xzf $HOME/Downloads/lls.tar.gz
 
 # TODO: There's an issue here
 # Need to fix the nvim theme to run install
+sleep 1
 git clone --depth=1 https://github.com/savq/paq-nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
 nvim --headless -c 'PaqInstall' +q
 
