@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 SSH_DIR="$HOME/.ssh"
 
