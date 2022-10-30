@@ -8,3 +8,15 @@ the GNOME environment.
 
 There's also the archive branch that holds all my oldest dotfiles from before
 I'd started automating them and being more organised.
+
+## To Run
+Make sure to update the configs in this repo from the master version in 
+ttibsi/dotfiles-playbook first wwith the update-configs script.
+
+Ideally this should be run on a fresh install of PopOS - It's been tested on
+PopOS 22.04
+
+```bash
+./update-configs.sh
+./dotfiles.sh
+```
