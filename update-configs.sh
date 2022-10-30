@@ -17,3 +17,7 @@ mv playbook/templates/zsh-shell configs
 # Delete playbook clone
 echo "Removing playbook clone"
 rm -rf playbook
+
+git add -u configs
+git commit -m "Updated configs"
+
